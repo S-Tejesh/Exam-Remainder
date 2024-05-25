@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1.str {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        a.btn {
+            font-size: large;
+            color: blue;
+            text-decoration: none;
+        }
+
+        form {
+            width: 300px;
+            padding: 20px;
+            background-color: #eee;
+            margin: auto;
+            margin-top: 40px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="file"],
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<h1 class="str">{{request.args.get('info', default='')}} </h1>
+<a href="logout" class="btn">Log Out</a>
+<a href="change_password" class="btn">Change Password</a>
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <h2>edit/upload officer file</h2>
+    <input type="file" name="officer_file" accept=".xlsx">
+    <input type="submit" value="Upload">
+    <br><br><br>
+    <h2>edit/upload tsheet file</h2>
+    <input type="file" name="tsheet" accept=".xlsx" onchange="showInputField(this)" id="tsheet_button" >
+    <input type="submit" value="Upload" >
+    <input type="text" name="user_input" id='t_value' placeholder="Enter value for 'T'" style="display: none;">
+    <script>
+        function showInputField(input) {
+            var userInputField = document.querySelector('input[name="user_input"]');
+            if (input.files && input.files.length > 0) {
+                userInputField.style.display = 'block';
+            } else {
+                userInputField.style.display = 'none';
+            }
+        }
+        document.getElementById('tsheet_button').addEventListener('click', function() {
+            var submitButton = document.getElementById('t_value');
+            submitButton.setAttribute('required', 'true');
+        });
+        document.getElementById('t_value').addEventListener('click', function() {
+            var submitButton = document.getElementById('t_value');
+            submitButton.removeAttribute('required');
+        });
+    </script>
+    </script>
+</form>
+<form method="POST" action="/send-alerts">
+    <button type="submit" name="button" value="2">Send Alerts!</button>
+</form>
+</body>
+</html>

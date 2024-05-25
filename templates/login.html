@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+       /* Apply a background color to the body */
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Style the container */
+.container {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+/* Style the heading */
+h2.gfg {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Style the strong elements */
+strong {
+    font-weight: bold;
+}
+
+/* Style the input fields */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Style the Send Alerts button */
+button[name="button"] {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Add some spacing to the buttons */
+input[type="submit"],
+button[name="button"] {
+    margin-top: 10px;
+}
+
+/* Style the error message */
+h3.strong {
+    color: #ff0000;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="gfg">Welcome to JNTUH Admin Page</h2>
+        <div class="login-form">
+            <h3 class="strong">{{request.args.get('info', default='')}}</h3>
+            <form method="post" class="abc">
+                <strong>Username:</strong> <br>
+                <input type="text" name='username'><br>
+                <strong>Password:</strong><br>
+                <input name='password' type='password'><br><br>
+                <input type="submit" value="Login">
+            </form>
+            <form method="POST" action="/send-alerts">
+                <button type="submit" name="button" value="1">Send Alerts!</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+
+</html>
